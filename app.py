@@ -14,7 +14,7 @@ app = Flask(__name__)
 # ---------------- SECURITY CONFIG ----------------
 app.secret_key = os.getenv("SECRET_KEY", "dev-only-change-this")
 
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 # ---------------- LOGIN DECORATOR ----------------
 def login_required(f):
