@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+
+<h2>Welcome, {{ user }}</h2>
+
+<div class="card">
+  <h3>Improve your resume and increase your chances of getting hired</h3>
+
+  <form method="POST" enctype="multipart/form-data">
+    <textarea
+      name="resume"
+      placeholder="Paste your resume (optional)"
+    ></textarea>
+
+    <p>OR upload file:</p>
+
+    <input type="file" name="file" />
+
+    <input
+      name="role"
+      placeholder="What do you want to become? (e.g Frontend Developer)"
+      required
+    />
+
+    <button type="submit">Analyze</button>
+  </form>
+</div>
+
+{% if result %}
+<div class="card">
+  {% if result.error %}
+  <p style="color: red">Error: {{ result.error }}</p>
+  {% endif %}
+
+  <h3>ATS Match Score</h3>
+  <p><strong>{{ result.get("ats_score", 0) }}%</strong></p>
+
+  <h3>Matched Skills</h3>
+  <ul>
+    {% for s in result.get("skills", []) %}
+    <li>{{ s }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Missing Skills</h3>
+  <ul>
+    {% for s in result.get("missing_skills", []) %}
+    <li>{{ s }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Learning Roadmap</h3>
+  <ul>
+    {% for item in result.get("roadmap", []) %}
+    <li>
+      <strong>{{ item["skill"] }}</strong> - {{ item["level"] }} {% if
+      item["resources"] %}
+      <br />
+      Resources: {{ item["resources"] | join(", ") }} {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Interview Questions</h3>
+  <ul>
+    {% for q in result.get("interview_questions", []) %} {% if q.question %}
+    <li>
+      <strong>{{ q.question }}</strong><br />
+      {{ q.answer }}
+    </li>
+
+    {% else %}
+    <li>{{ q }}</li>
+
+    {% endif %} {% endfor %}
+  </ul>
+</div>
+{% endif %} {% endblock %}
