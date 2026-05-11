@@ -1,5 +1,7 @@
 # AI Resume Analyzer
 
+🚀 Live Demo: [Click here](https://ai-resume-analyzer-pjde.onrender.com)
+
 AI Resume Analyzer is a Flask-based web application that helps users improve their resumes using AI-powered analysis. Users can upload or paste a resume, choose a target job role, and receive insights such as relevant skills, missing skills, learning roadmap suggestions, interview questions, and an ATS score.
 
 ## Features
