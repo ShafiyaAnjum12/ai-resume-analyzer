@@ -1,268 +1,323 @@
-/* ---------------- ROOT VARIABLES ---------------- */
 :root {
-  --bg: #0b1220;
-  --bg2: #111827;
-  --surface: rgba(17, 24, 39, 0.65);
-  --surface-strong: rgba(17, 24, 39, 0.9);
-  --primary: #22c55e;
-  --primary-hover: #16a34a;
-  --accent: #38bdf8;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
-  --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    --bg: #0B1220;           /* Deep Dark Navy */
+    --surface: #111827;     /* Rich Dark Slate */
+    --primary: #22C55E;     /* Fresh Green */
+    --accent: #38BDF8;      /* Bright Sky Blue */
+    --text: #F1F5F9;        /* Soft White */
+    --muted: #94A3B8;
+    --border: rgba(255,255,255,0.06);
 }
 
-/* ---------------- GLOBAL RESET ---------------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+/* ================= GLOBAL ================= */
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.12), transparent 30%),
-    linear-gradient(135deg, var(--bg), var(--bg2));
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.5;
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
-/* ---------------- CONTAINER ---------------- */
+
+/* ================= AUTH ================= */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.auth-card {
+    width: 400px;
+    background: var(--surface);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+}
+
+.auth-card h2 {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.sub-text {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0B1220;
+    color: var(--text);
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.auth-card input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.15);
+}
+
+.auth-card button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-card button:hover {
+    background: #0d8f6e;
+    transform: translateY(-1px);
+}
+
+.auth-links a,
+.switch-auth {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.auth-links a:hover,
+.switch-auth:hover {
+    text-decoration: underline;
+}
+
+/* ================= LAYOUT ================= */
 .container {
-  width: 90%;
-  max-width: 1100px;
-  margin: auto;
+    width: 85%;
+    max-width: 1000px;
+    margin: auto;
 }
 
-/* ---------------- HEADER ---------------- */
+/* ================= HEADER ================= */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(11, 18, 32, 0.7);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    background: var(--surface);
+    padding: 0 25px;
+    height: 50px;              /* IMPORTANT for vertical centering */
+    display: flex;
+    justify-content: flex-end; /* right side */
+    align-items: center;       /* vertical middle */
+    border-bottom: 1px solid var(--border);
 }
 
-/* FIX: full width header layout */
-.header-inner {
-  width: 100%;
-  height: 72px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
 }
 
-/* ---------------- LOGO ---------------- */
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  white-space: nowrap;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ---------------- NAVBAR ---------------- */
 nav {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
+    float: right;
 }
 
 nav a {
-  text-decoration: none;
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 14px;
-  transition: 0.3s ease;
-  white-space: nowrap;
+    color: var(--text);
+    margin-left: 18px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
 }
 
 nav a:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--accent);
-  transform: translateY(-2px);
+    color: var(--accent);
 }
 
-/* ---------------- MAIN ---------------- */
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    color: #22C55E
+}
+
+
+/* ================= MAIN ================= */
 main {
-  padding: 40px 0;
+    margin-top: 40px;
 }
 
-/* ---------------- CARDS ---------------- */
-.card,
-.auth-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* ================= CARDS ================= */
+.card {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    transition: 0.2s ease;
 }
 
-/* ---------------- AUTH ---------------- */
-.auth-container {
-  min-height: 75vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96,165,250,0.2);
 }
 
-.auth-card {
-  width: 100%;
-  max-width: 430px;
-}
-
-/* ---------------- INPUTS ---------------- */
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 13px 14px;
-  margin-top: 12px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text);
-  font-size: 14px;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
-}
-
-/* ---------------- BUTTON ---------------- */
-button {
-  width: 100%;
-  margin-top: 16px;
-  padding: 13px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), #16a34a);
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(34, 197, 94, 0.25);
-}
-
-/* ---------------- HEADINGS ---------------- */
+/* ================= HEADINGS ================= */
 h2 {
-  font-size: 28px;
-  margin-bottom: 18px;
+    margin-bottom: 20px;
+    color: var(--text);
 }
 
 h3 {
-  font-size: 18px;
-  margin-bottom: 14px;
-  color: var(--accent);
-}
-
-/* ---------------- FOOTER ---------------- */
-footer {
-  margin-top: 60px;
-  padding: 24px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  background: rgba(11, 18, 32, 0.55);
-  backdrop-filter: blur(16px);
-}
-
-/* ---------------- ANIMATION ---------------- */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ---------------- RESPONSIVE ---------------- */
-@media (max-width: 992px) {
-  .header-inner {
-    padding: 0 18px;
-  }
-
-  nav a {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header-inner {
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 12px 16px;
-  }
-
-  .logo {
+    margin-bottom: 20px;
     font-size: 18px;
-  }
-
-  nav {
-    justify-content: flex-end;
-  }
-
-  nav a {
-    font-size: 12px;
-    padding: 7px 10px;
-  }
-
-  .card,
-  .auth-card {
-    padding: 22px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
+    color: var(--accent);
 }
 
-@media (max-width: 480px) {
-  .logo {
-    font-size: 16px;
-  }
+/* ================= INPUTS ================= */
+textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-top: 10px;
+    font-size: 14px;
+    background: #0B1220;
+    color: var(--text);
+}
 
-  nav a {
-    font-size: 11px;
-    padding: 6px 8px;
-  }
+textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+}
 
-  .card,
-  .auth-card {
-    padding: 18px;
-  }
+input[type="file"],
+input[type="text"],
+input[name="role"] {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0B1220;
+    color: var(--text);
+}
 
-  h2 {
-    font-size: 20px;
-  }
+/* ================= BUTTONS ================= */
+button {
+    margin-top: 15px;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #0d8f6e;
+    transform: translateY(-1px);
+}
+
+/* ================= LIST ================= */
+ul {
+    padding-left: 18px;
+}
+
+li {
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+/* ================= FOOTER ================= */
+footer {
+    margin-top: 80px;
+    padding: 25px 20px;
+    text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+}
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+    .container {
+        width: 92%;
+    }
+
+    /* AUTH CARD */
+    .auth-card {
+        width: 100%;
+        padding: 25px;
+        margin: 0 15px;
+    }
+
+    .auth-container {
+        margin-top: 40px;
+        padding: 0 10px;
+    }
+
+    /* HEADER */
+    header {
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 12px 15px;
+    }
+
+    nav {
+        float: none;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    nav a {
+        margin-left: 0;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    /* CARDS */
+    .card {
+        padding: 18px;
+    }
+
+    /* TEXT */
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    /* INPUTS */
+    textarea {
+        min-height: 120px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    footer {
+        padding: 18px 10px;
+        font-size: 12px;
+    }
 }
