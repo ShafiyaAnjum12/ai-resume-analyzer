@@ -1,110 +1,213 @@
 :root {
-    --bg: #0B1220;
-    --surface: #111827;
-    --primary: #22C55E;
-    --accent: #38BDF8;
-    --text: #F1F5F9;
+    --bg: #0B1220;           /* Deep Dark Navy */
+    --surface: #111827;     /* Rich Dark Slate */
+    --primary: #22C55E;     /* Fresh Green */
+    --accent: #38BDF8;      /* Bright Sky Blue */
+    --text: #F1F5F9;        /* Soft White */
     --muted: #94A3B8;
     --border: rgba(255,255,255,0.06);
 }
 
 /* ================= GLOBAL ================= */
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.5;
 }
 
-/* ================= CONTAINER ================= */
+
+/* ================= AUTH ================= */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.auth-card {
+    width: 400px;
+    background: var(--surface);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+}
+
+.auth-card h2 {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.sub-text {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0B1220;
+    color: var(--text);
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.auth-card input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.15);
+}
+
+.auth-card button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-card button:hover {
+    background: #0d8f6e;
+    transform: translateY(-1px);
+}
+
+.auth-links a,
+.switch-auth {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.auth-links a:hover,
+.switch-auth:hover {
+    text-decoration: underline;
+}
+
+/* ================= LAYOUT ================= */
 .container {
-    width: 90%;
-    max-width: 1100px;
+    width: 85%;
+    max-width: 1000px;
     margin: auto;
 }
 
 /* ================= HEADER ================= */
 header {
     background: var(--surface);
+    padding: 0 25px;
+    height: 50px;              /* IMPORTANT for vertical centering */
+    display: flex;
+    justify-content: flex-end; /* right side */
+    align-items: center;       /* vertical middle */
     border-bottom: 1px solid var(--border);
-    padding: 12px 0;
 }
 
-/* NEW FLEX HEADER */
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ================= LOGO (IMPROVED) ================= */
-.logo {
+header h1 {
     font-size: 22px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
 }
 
-/* ================= NAV ================= */
 nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    float: right;
 }
 
 nav a {
     color: var(--text);
+    margin-left: 18px;
     text-decoration: none;
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 8px;
     transition: 0.2s;
-    white-space: nowrap;
 }
 
 nav a:hover {
     color: var(--accent);
-    background: rgba(56,189,248,0.08);
 }
+
+.logo {
+    font-size: 23px;
+    font-weight: 700;
+    color: #22C55E
+}
+
 
 /* ================= MAIN ================= */
 main {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 /* ================= CARDS ================= */
 .card {
     background: var(--surface);
-    padding: 20px;
+    padding: 25px;
     border-radius: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     border: 1px solid var(--border);
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(96,165,250,0.2);
+}
+
+/* ================= HEADINGS ================= */
+h2 {
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--accent);
 }
 
 /* ================= INPUTS ================= */
-textarea,
+textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-top: 10px;
+    font-size: 14px;
+    background: #0B1220;
+    color: var(--text);
+}
+
+textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
 input[type="file"],
 input[type="text"],
 input[name="role"] {
     width: 100%;
-    padding: 12px;
     margin-top: 10px;
+    padding: 12px;
     border-radius: 10px;
     border: 1px solid var(--border);
     background: #0B1220;
     color: var(--text);
 }
 
-/* ================= BUTTON ================= */
+/* ================= BUTTONS ================= */
 button {
     margin-top: 15px;
     padding: 12px;
@@ -113,84 +216,33 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 14px;
     font-weight: 600;
-    width: 100%;
+    transition: 0.2s;
 }
 
 button:hover {
     background: #0d8f6e;
+    transform: translateY(-1px);
 }
 
-/* ================= AUTH RESPONSIVE ================= */
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
+/* ================= LIST ================= */
+ul {
+    padding-left: 18px;
 }
 
-.auth-card {
-    width: 100%;
-    max-width: 400px;
-    background: var(--surface);
-    padding: 30px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
+li {
+    margin-bottom: 6px;
+    color: var(--text);
 }
 
 /* ================= FOOTER ================= */
 footer {
-    margin-top: 60px;
-    padding: 20px;
+    margin-top: 80px;
+    padding: 25px 20px;
     text-align: center;
     background: var(--surface);
     border-top: 1px solid var(--border);
     font-size: 13px;
     color: var(--muted);
-}
-
-/* ================= RESPONSIVE DESIGN ================= */
-
-/* Tablets */
-@media (max-width: 768px) {
-
-    .header-flex {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav {
-        justify-content: flex-start;
-        width: 100%;
-    }
-
-    .logo {
-        font-size: 20px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-
-    .container {
-        width: 92%;
-    }
-
-    nav a {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-
-    .card {
-        padding: 15px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
 }
