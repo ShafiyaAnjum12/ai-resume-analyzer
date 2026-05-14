@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Resume Analyzer</title>
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
@@ -11,19 +12,24 @@
   </head>
 
   <body>
-    <header class="container">
+    <header>
       <h1 class="logo">AI Resume Analyzer</h1>
+      <div class="container">
+        <nav>
+          {% if session.get("user") %}
 
-      <nav>
-        {% if session.get("user") %}
-        <a href="/dashboard">Home</a>
-        <a href="/history">History</a>
-        <a href="/logout">Logout</a>
-        {% else %}
-        <a href="/login">Login</a>
-        <a href="/signup">Signup</a>
-        {% endif %}
-      </nav>
+          <a href="/dashboard">Home</a>
+          <a href="/history">History</a>
+          <a href="/logout">Logout</a>
+
+          {% else %}
+
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+
+          {% endif %}
+        </nav>
+      </div>
     </header>
 
     <main class="container">{% block content %}{% endblock %}</main>
