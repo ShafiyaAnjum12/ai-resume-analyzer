@@ -47,15 +47,20 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: rgba(11, 18, 32, 0.7);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* FIX: full width header layout */
+.header-inner {
+  width: 100%;
   height: 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
-  background: rgba(11, 18, 32, 0.7);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 /* ---------------- LOGO ---------------- */
@@ -63,20 +68,16 @@ header {
   font-size: 24px;
   font-weight: 700;
   white-space: nowrap;
-  color: var(--primary);
   background: linear-gradient(90deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* ---------------- NAVBAR ---------------- */
 nav {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
   gap: 10px;
-  margin-left: auto;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -96,12 +97,12 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* ---------------- MAIN SECTION ---------------- */
+/* ---------------- MAIN ---------------- */
 main {
   padding: 40px 0;
 }
 
-/* ---------------- CARD DESIGN ---------------- */
+/* ---------------- CARDS ---------------- */
 .card,
 .auth-card {
   background: var(--surface);
@@ -109,19 +110,11 @@ main {
   border-radius: 20px;
   padding: 28px;
   box-shadow: var(--shadow);
-  animation: fadeUp 0.7s ease;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* ---------------- CARD HOVER ---------------- */
-.card:hover,
-.auth-card:hover {
-  transform: translateY(-4px);
-  transition: 0.3s ease;
-}
-
-/* ---------------- AUTH SECTION ---------------- */
+/* ---------------- AUTH ---------------- */
 .auth-container {
   min-height: 75vh;
   display: flex;
@@ -134,18 +127,7 @@ main {
   max-width: 430px;
 }
 
-.auth-card h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-.sub-text {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-/* ---------------- FORM INPUTS ---------------- */
+/* ---------------- INPUTS ---------------- */
 input,
 textarea,
 select {
@@ -167,12 +149,7 @@ select:focus {
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
 }
 
-textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-/* ---------------- BUTTONS ---------------- */
+/* ---------------- BUTTON ---------------- */
 button {
   width: 100%;
   margin-top: 16px;
@@ -204,15 +181,6 @@ h3 {
   color: var(--accent);
 }
 
-/* ---------------- LISTS ---------------- */
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
 /* ---------------- FOOTER ---------------- */
 footer {
   margin-top: 60px;
@@ -222,10 +190,9 @@ footer {
   color: var(--muted);
   background: rgba(11, 18, 32, 0.55);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
-/* ---------------- ANIMATIONS ---------------- */
+/* ---------------- ANIMATION ---------------- */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -238,54 +205,30 @@ footer {
 }
 
 /* ---------------- RESPONSIVE ---------------- */
-@media (max-width: 1200px) {
-  .container {
-    width: 92%;
-  }
-
-  .logo {
-    font-size: 22px;
-  }
-}
-
-/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 992px) {
-  .container {
-    width: 94%;
-  }
-
-  header {
+  .header-inner {
     padding: 0 18px;
   }
 
   nav a {
-    padding: 9px 12px;
     font-size: 13px;
-  }
-
-  .card,
-  .auth-card {
-    padding: 24px;
   }
 }
 
-/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 768px) {
-  header {
+  .header-inner {
     height: auto;
-    min-height: 70px;
-    padding: 14px 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
+    padding: 12px 16px;
   }
 
   .logo {
     font-size: 18px;
-    max-width: 48%;
-    line-height: 1.2;
   }
 
   nav {
-    gap: 6px;
     justify-content: flex-end;
   }
 
@@ -304,45 +247,9 @@ footer {
   }
 }
 
-/* ---------------- RESPONSIVE ---------------- */
-@media (max-width: 576px) {
-  .container {
-    width: 95%;
-  }
-
-  .logo {
-    font-size: 17px;
-    max-width: 45%;
-  }
-
-  nav a {
-    font-size: 11px;
-    padding: 7px 9px;
-  }
-
-  .card,
-  .auth-card {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-}
-
-/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 480px) {
-  header {
-    padding: 12px 10px;
-  }
-
   .logo {
     font-size: 16px;
-    max-width: 42%;
-  }
-
-  nav {
-    gap: 5px;
   }
 
   nav a {
@@ -353,37 +260,9 @@ footer {
   .card,
   .auth-card {
     padding: 18px;
-    border-radius: 16px;
   }
 
   h2 {
     font-size: 20px;
-  }
-
-  input,
-  textarea,
-  button {
-    font-size: 14px;
-  }
-}
-
-/* ---------------- RESPONSIVE ---------------- */
-@media (max-width: 360px) {
-  .logo {
-    font-size: 14px;
-  }
-
-  nav a {
-    font-size: 10px;
-    padding: 5px 7px;
-  }
-
-  h2 {
-    font-size: 18px;
-  }
-
-  .card,
-  .auth-card {
-    padding: 16px;
   }
 }
