@@ -1,0 +1,376 @@
+:root {
+  --bg: #0b1220;
+  --bg2: #111827;
+  --surface: rgba(17, 24, 39, 0.65);
+  --surface-strong: rgba(17, 24, 39, 0.9);
+  --primary: #22c55e;
+  --primary-hover: #16a34a;
+  --accent: #38bdf8;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  --blur: blur(16px);
+}
+
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.12), transparent 30%),
+    linear-gradient(135deg, var(--bg), var(--bg2));
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 14px 24px;
+  background: rgba(11, 18, 32, 0.7);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= NAV ================= */
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ================= MAIN ================= */
+main {
+  padding: 40px 0;
+}
+
+/* ================= GLASS CARD ================= */
+.card,
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.7s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.card:hover,
+.auth-card:hover {
+  transform: translateY(-4px);
+  transition: 0.3s ease;
+}
+
+/* ================= AUTH ================= */
+.auth-container {
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+}
+
+.auth-card h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.sub-text {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* ================= INPUTS ================= */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px 14px;
+  margin-top: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* ================= BUTTON ================= */
+button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), #16a34a);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 24px rgba(34, 197, 94, 0.25);
+}
+
+/* ================= HEADINGS ================= */
+h2 {
+  margin-bottom: 18px;
+  font-size: 28px;
+}
+
+h3 {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+/* ================= LIST ================= */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  margin-top: 60px;
+  padding: 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(11, 18, 32, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1200px) {
+  .container {
+    width: 92%;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 991px) {
+  .container {
+    width: 94%;
+  }
+
+  header {
+    padding: 14px 18px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  nav a {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  header {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 20px;
+    max-width: 45%;
+    line-height: 1.2;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  nav a {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .card,
+  .auth-card {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+
+  .logo {
+    font-size: 18px;
+    max-width: 42%;
+  }
+
+  nav a {
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 12px 10px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 16px;
+    max-width: 40%;
+  }
+
+  nav {
+    gap: 6px;
+  }
+
+  nav a {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .card,
+  .auth-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button,
+  input,
+  textarea {
+    font-size: 14px;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 360px) {
+  .logo {
+    font-size: 14px;
+  }
+
+  nav a {
+    font-size: 10px;
+    padding: 5px 7px;
+  }
+
+  .card,
+  .auth-card {
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
