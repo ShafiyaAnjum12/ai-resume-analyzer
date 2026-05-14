@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Analyzer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <h1 class="logo">AI Resume Analyzer</h1>
+
+      <nav>
+        {% if session.get("user") %}
+        <a href="/dashboard">Home</a>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
+        {% else %}
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <main class="container">{% block content %}{% endblock %}</main>
+
+    <footer>
+      <p>© 2026 AI Resume Analyzer</p>
+    </footer>
+  </body>
+</html>
