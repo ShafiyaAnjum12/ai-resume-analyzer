@@ -138,12 +138,21 @@ nav a:hover {
 }
 
 .logo {
-    font-size: 23px;
-    font-weight: 700;
-    color: #22C55E
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #22C55E, #38BDF8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-
+.logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+}
 /* ================= MAIN ================= */
 main {
     margin-top: 40px;
@@ -246,32 +255,67 @@ footer {
     font-size: 13px;
     color: var(--muted);
 }
-/* ================= MOBILE RESPONSIVE ================= */
-@media (max-width: 768px) {
 
+/* ================= RESPONSIVE SYSTEM ================= */
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1100px;
+    }
+
+    .auth-card {
+        width: 420px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+}
+
+/* Small Laptop */
+@media (max-width: 1280px) {
+    .container {
+        width: 90%;
+    }
+
+    .auth-card {
+        width: 380px;
+    }
+
+    header {
+        padding: 0 18px;
+    }
+
+    nav a {
+        font-size: 13.5px;
+        margin-left: 14px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
     .container {
         width: 92%;
     }
 
-    /* AUTH CARD */
     .auth-card {
-        width: 100%;
-        padding: 25px;
-        margin: 0 15px;
+        width: 360px;
     }
 
-    .auth-container {
-        margin-top: 40px;
-        padding: 0 10px;
+    nav a {
+        font-size: 13px;
     }
+}
 
-    /* HEADER */
+/* Mobile */
+@media (max-width: 768px) {
+
     header {
-        height: auto;
         flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
+        height: auto;
         padding: 12px 15px;
+        align-items: flex-start;
     }
 
     nav {
@@ -285,39 +329,57 @@ footer {
 
     nav a {
         margin-left: 0;
-        padding: 6px 10px;
         font-size: 13px;
+        padding: 6px 10px;
     }
 
-    .logo {
-        font-size: 20px;
+    .auth-container {
+        margin-top: 40px;
+        padding: 0 15px;
     }
 
-    /* CARDS */
-    .card {
-        padding: 18px;
+    .auth-card {
+        width: 100%;
+        padding: 25px;
     }
 
-    /* TEXT */
+    main {
+        margin-top: 25px;
+    }
+
     h2 {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     h3 {
         font-size: 16px;
     }
+}
 
-    /* INPUTS */
-    textarea {
-        min-height: 120px;
+/* Small Phones */
+@media (max-width: 480px) {
+
+    .auth-card {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: left;
     }
 
     button {
         width: 100%;
     }
+}
 
-    footer {
-        padding: 18px 10px;
-        font-size: 12px;
-    }
+/* Safety fix: prevent horizontal scroll */
+html, body {
+    overflow-x: hidden;
 }
