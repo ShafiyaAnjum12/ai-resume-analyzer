@@ -12,7 +12,7 @@ from functools import wraps
 app = Flask(__name__)
 
 # ---------------- SECURITY CONFIG ----------------
-app.secret_key = os.getenv("SECRET_KEY", "dev-only-change-this")
+app.secret_key = os.getenv("SECRET_KEY")
 
 Base.metadata.create_all(bind=engine)
 
