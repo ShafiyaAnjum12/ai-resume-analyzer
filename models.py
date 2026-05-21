@@ -5,7 +5,7 @@ class User(Base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)
-    email = Column(String(255), unique=True, nullable=False)
+    username = Column(String(255), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
 
 class Report(Base):
