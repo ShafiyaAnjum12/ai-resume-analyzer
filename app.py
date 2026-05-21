@@ -38,18 +38,33 @@ def home():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     db = SessionLocal()
+
     try:
         if request.method == "POST":
-            email = request.form.get("email")
-            password = request.form.get("password")
 
-            existing_user = db.query(models.User).filter_by(email=email).first()
+            username = request.form.get("username")
+            password = request.form.get("password")
+            confirm_password = request.form.get("confirm_password")
+
+            # PASSWORD MATCH CHECK
+            if password != confirm_password:
+                return "Passwords do not match"
+
+            # CHECK EXISTING USER
+            existing_user = db.query(models.User).filter_by(username=username).first()
+
             if existing_user:
                 return "User already exists"
 
+            # HASH PASSWORD
             hashed_pw = generate_password_hash(password)
 
-            user = models.User(email=email, password=hashed_pw)
+            # CREATE USER
+            user = models.User(
+                username=username,
+                password=hashed_pw
+            )
+
             db.add(user)
             db.commit()
 
@@ -64,16 +79,21 @@ def signup():
 # ---------------- LOGIN ----------------
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     db = SessionLocal()
+
     try:
         if request.method == "POST":
-            email = request.form.get("email")
+
+            username = request.form.get("username")
             password = request.form.get("password")
 
-            user = db.query(models.User).filter_by(email=email).first()
+            user = db.query(models.User).filter_by(username=username).first()
 
             if user and check_password_hash(user.password, password):
-                session["user"] = user.email
+
+                session["user"] = user.username
+
                 return redirect("/dashboard")
 
             return "Invalid Credentials"
@@ -86,6 +106,7 @@ def login():
 
 # ---------------- FILE VALIDATION ----------------
 ALLOWED_EXTENSIONS = {"pdf", "docx"}
+
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -101,12 +122,15 @@ def dashboard():
     user_goal = ""
 
     db = SessionLocal()
+
     try:
-        user = db.query(models.User).filter_by(email=session["user"]).first()
+        user = db.query(models.User).filter_by(username=session["user"]).first()
+
         if not user:
             return redirect("/login")
 
         if request.method == "POST":
+
             user_goal = request.form.get("role")
             resume_text = request.form.get("resume")
             file = request.files.get("file")
@@ -115,19 +139,30 @@ def dashboard():
             if file and file.filename != "" and allowed_file(file.filename):
 
                 if file.filename.endswith(".pdf"):
+
                     pdf_reader = PyPDF2.PdfReader(file)
+
                     resume_text = "".join(
                         [p.extract_text() or "" for p in pdf_reader.pages]
                     )
 
                 elif file.filename.endswith(".docx"):
+
                     doc = docx.Document(file)
-                    resume_text = "\n".join([p.text for p in doc.paragraphs])
+
+                    resume_text = "\n".join(
+                        [p.text for p in doc.paragraphs]
+                    )
 
             # AI ANALYSIS
             if resume_text and user_goal:
+
                 try:
-                    result = analyze_resume(resume_text, user_goal)
+
+                    result = analyze_resume(
+                        resume_text,
+                        user_goal
+                    )
 
                     report = models.Report(
                         user_id=user.id,
@@ -139,7 +174,10 @@ def dashboard():
                     db.commit()
 
                 except Exception as e:
-                    result = {"error": str(e)}
+
+                    result = {
+                        "error": str(e)
+                    }
 
         return render_template(
             "dashboard.html",
@@ -157,17 +195,27 @@ def dashboard():
 def history():
 
     db = SessionLocal()
+
     try:
-        user = db.query(models.User).filter_by(email=session["user"]).first()
+
+        user = db.query(models.User).filter_by(
+            username=session["user"]
+        ).first()
+
         if not user:
             return redirect("/login")
 
-        reports = db.query(models.Report).filter_by(user_id=user.id).all()
+        reports = db.query(models.Report).filter_by(
+            user_id=user.id
+        ).all()
 
         parsed_reports = []
+
         for r in reports:
+
             try:
                 parsed_result = json.loads(r.results)
+
             except:
                 parsed_result = {}
 
@@ -176,7 +224,10 @@ def history():
                 "result": parsed_result
             })
 
-        return render_template("history.html", reports=parsed_reports)
+        return render_template(
+            "history.html",
+            reports=parsed_reports
+        )
 
     finally:
         db.close()
@@ -185,7 +236,9 @@ def history():
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 def logout():
+
     session.pop("user", None)
+
     return redirect("/login")
 
 
