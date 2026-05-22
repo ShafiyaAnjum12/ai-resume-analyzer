@@ -14,6 +14,9 @@ app = Flask(__name__)
 # ---------------- SECURITY CONFIG ----------------
 app.secret_key = os.getenv("SECRET_KEY")
 
+if not app.secret_key:
+    raise ValueError("SECRET_KEY is missing")
+
 Base.metadata.create_all(bind=engine)
 
 # ---------------- LOGIN DECORATOR ----------------
